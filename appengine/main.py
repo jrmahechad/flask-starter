@@ -10,8 +10,10 @@ from custom_filters import sample
 
 PORT = os.environ.get('PORT')
 app = Flask(__name__)
-## Custom filters
-app.register_blueprint(sample.blueprint)
+## Custom filters:
+## For more information about flask blueprints go here:
+## https://flask.palletsprojects.com/en/2.1.x/blueprints/
+app.register_blueprint(sample.filter_bp)
 ##
 cred = credentials.ApplicationDefault()
 firebase_admin.initialize_app(cred)

@@ -1,10 +1,12 @@
 # flask-starter
 
-Flask starter project
+This project is mean to be a starter for future projects.
+It uses a Flask application deployed in AppEngine.
+It can be used along with Firebase and Cloud Functions.
 
-Creates web pages that will display on digital billboards.
+If you are going to update this project bare in mind this is a starter project. Only add update that can be used in this way. Please do not add project specify configuration.
 
-This project is using AppEngine (python3), Firestore, and Cloud Functions.
+Fork/download and modify as needed.
 
 | Folder                                                                      | Description                                         |
 | :--------------------------------------------------------------------------- | :-------------------------------------------------- |
@@ -38,9 +40,20 @@ Init firebase data and load sample cloud function
 make init
 ```
 
-Run init tests
+Run unit tests
 
 ```bash
 make run-tests
 ```
 
+If you add more functions with test please update the `Makefile` accordingly.
+
+## How to add a new cloud function
+
+Create you function folder inside `cloud-functions` folder.
+
+Add the setup for your cloud function into the `docker-compose.yaml` following existing configuration.
+
+You will need to run `docker-compose build` after this.
+
+You can edit the `Makefile` to add triggers for you function if needed.
