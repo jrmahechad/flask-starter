@@ -1,0 +1,80 @@
+version: '3.7'
+
+services:
+  gae:
+    container_name: project-gae
+    build: appengine
+    depends_on:
+    - db
+    volumes:
+    - ./appengine:/code
+    - ~/.config/gcloud:/.config/gcloud
+    ports:
+    - 8000:8000 # Serving the Flask app
+    environment:
+      CLOUDSDK_CONFIG: '/.config/gcloud'
+      GOOGLE_APPLICATION_CREDENTIALS: '/.config/gcloud/application_default_credentials.json'
+      PORT: 8000
+      GOOGLE_CLOUD_PROJECT: localhost
+      FIRESTORE_EMULATOR_HOST: db:8081
+#      GCP_PROJECT: studioxl
+#      GCLOUD_PROJECT: studioxl
+    command: >
+      sh -c "python main.py"
+  db:
+    container_name: project-db
+    build: firestore
+    volumes:
+    - ./firestore:/code
+    - ~/.config/gcloud:/.config/gcloud
+    working_dir: /code
+    environment:
+      FIRESTORE_EMULATOR_HOST: "0.0.0.0:8080"
+    ports:
+    - 8080:8080 # Firestore UI
+    - 8081:8081 # Firestore DB
+    command: >
+      sh -c "firebase emulators:start --project=localhost"
+  cf-init-firebase:
+    container_name: cf-init-firebase
+    build: cloud-functions/init-firebase
+    depends_on:
+    - db
+    volumes:
+    - ./cloud-functions/init-firebase:/code
+    - ~/.config/gcloud:/.config/gcloud
+    working_dir: /code
+    ports:
+    - 8090:8090
+    environment:
+      CLOUDSDK_CONFIG: '/.config/gcloud'
+      GOOGLE_APPLICATION_CREDENTIALS: '/.config/gcloud/application_default_credentials.json'
+      PORT: 8090
+      FUNCTION_SIGNATURE_TYPE: http
+      FUNCTION_TARGET: hook
+      GOOGLE_CLOUD_PROJECT: localhost
+      FIRESTORE_EMULATOR_HOST: db:8081
+    command: >
+      sh -c "functions_framework --debug"
+
+  cf-sample:
+    container_name: cf-sample
+    build: cloud-functions/sample
+    depends_on:
+    - db
+    volumes:
+    - ./cloud-functions/sample:/code
+    - ~/.config/gcloud:/.config/gcloud
+    working_dir: /code
+    ports:
+    - 8092:8092
+    environment:
+      CLOUDSDK_CONFIG: '/.config/gcloud'
+      GOOGLE_APPLICATION_CREDENTIALS: '/.config/gcloud/application_default_credentials.json'
+      PORT: 8092
+      FUNCTION_SIGNATURE_TYPE: http
+      FUNCTION_TARGET: hook
+      GOOGLE_CLOUD_PROJECT: localhost
+      FIRESTORE_EMULATOR_HOST: db:8081
+    command: >
+      sh -c "functions_framework --debug"
