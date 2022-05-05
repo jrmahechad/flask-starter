@@ -34,8 +34,15 @@ def get_safe_param(request, param):
 @app.route('/', methods=['GET'])
 def root():
     """Renders index.jinja"""
-    ## TODO: Query db and pass data to template.
-    return render_template('index.jinja')
+
+    index_ref = db.collection('content').document('index')
+    index = index_ref.get()
+    index_json = None
+
+    if index:
+        index_json = index.to_dict()
+
+    return render_template('index.jinja', page=index_json)
 
 
 

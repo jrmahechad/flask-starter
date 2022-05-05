@@ -8,9 +8,9 @@ def save_sample_page(db):
     ----------
     db: firebase database
     """
-    sample_component = get_component('sample', 'default', data=dict(copy='sample text'))
+    sample_component = get_component('sample', 'default', data=dict(copy='sample text from firebase'))
 
-    data = get_page('index', [sample_component])
+    data = get_page('index', [sample_component, sample_component])
 
     content_ref = db.collection('content')\
         .document('index')

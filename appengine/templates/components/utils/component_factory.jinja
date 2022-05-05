@@ -1,0 +1,10 @@
+{# Renders a component based on its type and name.
+    Component must be located and name like this:
+    /components/COMPONENT_NAME/COMPONENT_TYPE.jinja
+ #}
+{% macro render_component(component) %}
+  {% set template_name = '/' ~ component.type ~ '.jinja' %}
+  {% set template = './components/' ~ component.name ~ template_name %}
+  {% import template as component_template with context %}
+  {{component_template.render(component.data)}}
+{% endmacro %}

@@ -1,6 +1,17 @@
 {% extends "./base.jinja" %}
-{% import "./components/sample.jinja" as sample %}
+{% import "./components/sample/default.jinja" as sample %}
+{% import "./components/utils/component_factory.jinja" as factory %}
 
 {% block body %}
     {{sample.render()}}
+     {% if page +%}
+        <p>Page config from firebase: {{page | tojson}}</p>
+        <p>Components loaded from config</p>
+        {% for component in page.components %}
+            {{factory.render_component(component)}}
+        {% endfor %}
+    {% else %}
+       <p>Page is not available in the database.</p>
+       <p>Run <code>make init</code> to load it.</p>
+    {% endif %}
 {% endblock %}

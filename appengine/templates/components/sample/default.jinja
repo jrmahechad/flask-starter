@@ -1,7 +1,8 @@
 {% macro render(data) %}
+<p>Data inside default sample component: {{data}}</p>
   <section class="sample">
+  {% set text = data['copy'] if data else "sample section" %}
     <div class="sample__copy-container">
-      {% set text = "sample section" %}
       <p class="sample__text">{{text | sample_filter}}</p>
     </div>
   </section>
