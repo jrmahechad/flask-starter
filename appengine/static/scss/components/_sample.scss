@@ -1,0 +1,9 @@
+.sample {
+  background-color: $black;
+  color: $white;
+
+  &__copy-container {
+    display: flex;
+    justify-content: center;
+  }
+}

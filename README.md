@@ -4,11 +4,11 @@ Flask starter project
 
 Creates web pages that will display on digital billboards.
 
-This project is using AppEnging (python3), Firestore, and Cloud Functions.
+This project is using AppEngine (python3), Firestore, and Cloud Functions.
 
 | Folder                                                                      | Description                                         |
 | :--------------------------------------------------------------------------- | :-------------------------------------------------- |
-| appengine | The AppEngine project that displays the boards. |
+| appengine | The AppEngine project that displays a page. |
 | firestore | Provides local firestore emulation (not deployed) |
 | cloud-functions | Contains sample cloud functions |
 
@@ -36,5 +36,11 @@ Init firebase data and load sample cloud function
 
 ```bash
 make init
+```
+
+Run init tests
+
+```bash
+make run-tests
 ```
 

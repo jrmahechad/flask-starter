@@ -1,0 +1,8 @@
+{% macro render(data) %}
+  <section class="sample">
+    <div class="sample__copy-container">
+      {% set text = "sample section" %}
+      <p class="sample__text">{{text | sample_filter}}</p>
+    </div>
+  </section>
+{% endmacro %}
