@@ -25,7 +25,9 @@ css = Bundle('scss/core/main.scss', filters='libsass, cssmin',
              depends='scss/**/*.scss', output='main.min.css')
 assets.register('scss_all', css)
 
-## TODO: Add js to the site.
+js_min = Bundle('main.min.js')
+assets.register('js_min', js_min)
+
 
 def get_safe_param(request, param):
     """Returns param escaped and formated"""

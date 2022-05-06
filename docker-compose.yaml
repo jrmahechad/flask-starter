@@ -21,6 +21,7 @@ services:
 #      GCLOUD_PROJECT: studioxl
     command: >
       sh -c "python main.py"
+
   db:
     container_name: project-db
     build: firestore
@@ -35,6 +36,18 @@ services:
     - 8081:8081 # Firestore DB
     command: >
       sh -c "firebase emulators:start --project=localhost"
+  webpack:
+    container_name: webpack_1
+    image: node:16-slim
+    user: '$UID:$UID'
+    working_dir: /code
+    ports:
+      - 9000:9000
+    volumes:
+      - .:/code:cached
+    command: >
+      sh -c "sh run_webpack.sh"
+
   cf-init-firebase:
     container_name: cf-init-firebase
     build: cloud-functions/init-firebase

@@ -61,3 +61,6 @@ test-cf-sample:
 
 init:
 	make trigger-cloud-function-init-firebase
+
+build-front:
+	docker exec -it webpack_1 npm run build

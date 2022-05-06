@@ -15,5 +15,8 @@
     <main class="container">
       {% block body %}{% endblock %}
     </main>
+    {% assets "js_min" %}
+      <script defer src="{{ASSET_URL}}"></script>
+    {% endassets %}
   </body>
 </html>

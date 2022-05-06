@@ -2,4 +2,8 @@
 .vscode
 .webassets-cache
 appengine/static/*.css
+appengine/static/main.min.js
+appengine/static/main.min.js.map
 __pycache__
+node_modules/
+dist/
