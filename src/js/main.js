@@ -1,7 +1,7 @@
 /**
  * @fileoverview File to group all the DOM events.
  */
-import { SampleDefault } from './components/sample/default.js'
+import { SampleDefault } from './components/sample/default.js';
 import DOMEvents from './common/dom-events.js';
 
 /**
@@ -13,7 +13,7 @@ const components = [
     component: SampleDefault,
     key: '.sample',
   },
-]
+];
 
 /**
  * Maps over all the components and initialize them based
@@ -22,18 +22,19 @@ const components = [
  * @param {!Array<!Object>} components
  * @private
  */
- function initializePageComponents_(root, components) {
-  components.forEach(({ component, key, services = [] }) => {
+function initializePageComponents_(root, components) {
+  components.forEach(({ component, key, services = [], }) => {
     const instances = /** type{!Array<!Element>}**/(root.querySelectorAll(key));
+    // eslint-disable-next-line new-cap
     instances.forEach((instance) => new component(instance, ...services));
   });
 }
 
- /**
+/**
  * Calls initialize functions for services and components when HTML has been
  * loaded and parsed.
  */
 document.addEventListener(DOMEvents.DOM_CONTENT_LOADED, () => {
-  console.log('initializing components...')
+  console.log('initializing components...');
   initializePageComponents_(document, components);
 });
