@@ -39,7 +39,6 @@ services:
   webpack:
     container_name: webpack_1
     image: node:16-slim
-    user: '$UID:$UID'
     working_dir: /code
     ports:
       - 9000:9000
