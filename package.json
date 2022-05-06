@@ -1,0 +1,89 @@
+{
+  "name": "starter-project",
+  "version": "1.0.0",
+  "scripts": {
+    "build:js": "rollup -c",
+    "build": "npm run clean && npm run build:js && npm run build:css",
+    "clean": "rm -rf dist/*",
+    "debug:js": "rollup -c --configDebug --silent",
+    "lint:js": "eslint src/js/**/*.js",
+    "start": "run-p watch:**",
+    "watch:js": "watch 'npm run debug:js' src/js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "google"
+    ],
+    "env": {
+      "es6": true,
+      "node": true,
+      "browser": true
+    },
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "modules": true
+      }
+    },
+    "rules": {
+      "comma-dangle": 0,
+      "no-multi-spaces": 0,
+      "semi": [
+        "error",
+        "always"
+      ],
+      "space-before-function-paren": [
+        "error",
+        "never"
+      ],
+      "no-multiple-empty-lines": [
+        "error",
+        {
+          "max": 3
+        }
+      ],
+      "object-curly-spacing": [
+        "error",
+        "always",
+        {
+          "objectsInObjects": false,
+          "arraysInObjects": false
+        }
+      ],
+      "arrow-parens": 0,
+      "max-len": [
+        "error",
+        200
+      ],
+      "no-unused-vars": [
+        "error",
+        {
+          "args": "all"
+        }
+      ],
+      "dot-location": 0,
+      "quotes": [
+        2,
+        "single"
+      ],
+      "key-spacing": [
+        "error",
+        {
+          "mode": "minimum"
+        }
+      ]
+    }
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.14.0",
+    "eslint-config-google": "^0.14.0",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^2.72.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "watch": "^1.0.2"
+  }
+}
