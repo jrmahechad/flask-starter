@@ -1,6 +1,8 @@
 {
   "name": "starter-project",
   "version": "1.0.0",
+  "author": "jmahecha@hugeinc.com",
+  "license": "ISC",
   "scripts": {
     "build:css": "npm run lint:css && node-sass src/sass/main.scss --follow --output-style compressed | postcss --use autoprefixer --no-map -o appengine/static/main.min.temp.css",
     "build:js": "rollup -c",
@@ -79,8 +81,6 @@
       ]
     }
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.4.7",
     "eslint": "^8.14.0",
