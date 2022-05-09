@@ -2,11 +2,11 @@
   "name": "starter-project",
   "version": "1.0.0",
   "scripts": {
-    "build:css": "npm run lint:css && node-sass src/sass/main.scss --follow --output-style compressed | postcss --use autoprefixer --no-map -o appengine/static/main.min.css",
+    "build:css": "npm run lint:css && node-sass src/sass/main.scss --follow --output-style compressed | postcss --use autoprefixer --no-map -o appengine/static/main.min.temp.css",
     "build:js": "rollup -c",
     "build": "npm run clean && npm run build:js && npm run build:css",
     "clean": "rm -rf dist/*",
-    "debug:css": "npm run lint:css && node-sass src/sass/main.scss --follow --output-style compressed | postcss --use autoprefixer -o appengine/static/main.min.css --map file",
+    "debug:css": "npm run lint:css && node-sass src/sass/main.scss --follow --output-style compressed | postcss --use autoprefixer -o appengine/static/main.min.temp.css --map file",
     "debug:js": "rollup -c --configDebug --silent",
     "lint:css": "stylelint src/sass/**/*.scss",
     "lint:js": "eslint src/js/**/*.js",

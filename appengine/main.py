@@ -21,11 +21,11 @@ db = firestore.client()
 
 # Configuration for sass -> css minified
 assets = Environment(app)
-# TODO add md5 to filename
-css_min = Bundle('main.min.css')
+
+css_min = Bundle('main.min.temp.css', output='main.min.css')
 assets.register('scss_all', css_min)
 
-js_min = Bundle('main.min.js')
+js_min = Bundle('main.min.temp.js',output='main.min.js')
 assets.register('js_min', js_min)
 
 
