@@ -8,19 +8,28 @@ If you are going to update this project bare in mind this is a starter project. 
 
 Fork/download and modify as needed.
 
-| Folder                                                                      | Description                                         |
-| :--------------------------------------------------------------------------- | :-------------------------------------------------- |
-| appengine | The AppEngine project that displays a page. |
-| firestore | Provides local firestore emulation (not deployed) |
-| cloud-functions | Contains sample cloud functions |
+When forking from this project update `docker-compose.yaml` file container names with something related to your project.
+Change `project_*` names as you see fit.
+
+| Folder          | Description                                       |
+| :-------------- | :------------------------------------------------ |
+| appengine       | The AppEngine project that displays a page.       |
+| firestore       | Provides local firestore emulation (not deployed) |
+| cloud-functions | Contains sample cloud functions                   |
 
 ## Development
+
+You will need to install gcloud-cli. [Follow the official documentation](https://cloud.google.com/sdk/docs/install-sdk).
 
 If you have not setup your local service account you will need to do so (once):
 
 ```bash
 gcloud auth application-default login
 ```
+
+Install Docker following the [official documentation](https://www.docker.com/get-started/)
+
+**Make sure to run Docker before the next step**
 
 To setup the base images (once or when you change requirements):
 
