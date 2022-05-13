@@ -19,7 +19,7 @@ module.exports = merge(common, {
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     new MiniCssExtractPlugin({
-      filename: 'main.min.temp.css',
+      filename: '[name].min.temp.css',
     }),
     new ESLintPlugin({
       context: Path.resolve(__dirname, '../src'),

@@ -1,0 +1,51 @@
+{
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true
+    }
+  },
+  "extends": ["eslint:recommended", "google"],
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true
+  },
+  "rules": {
+    "comma-dangle": 0,
+    "no-multi-spaces": 0,
+    "semi": ["error", "always"],
+    "space-before-function-paren": ["error", "never"],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 3
+      }
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always",
+      {
+        "objectsInObjects": false,
+        "arraysInObjects": false
+      }
+    ],
+    "arrow-parens": 0,
+    "max-len": ["error", 200],
+    "no-unused-vars": [
+      "error",
+      {
+        "args": "all"
+      }
+    ],
+    "dot-location": 0,
+    "quotes": [2, "single"],
+    "key-spacing": [
+      "error",
+      {
+        "mode": "minimum"
+      }
+    ]
+  }
+}

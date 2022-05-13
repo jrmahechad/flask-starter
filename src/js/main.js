@@ -1,6 +1,7 @@
 /**
  * @fileoverview File to group all the DOM events.
  */
+import '../sass/main.scss';
 import { SampleDefault } from './components/sample/default.js';
 import DOMEvents from './common/dom-events.js';
 
@@ -23,7 +24,7 @@ const components = [
  * @private
  */
 function initializePageComponents_(root, components) {
-  components.forEach(({ component, key, services = [], }) => {
+  components.forEach(({ component, key, services = [] }) => {
     const instances = /** type{!Array<!Element>}**/(root.querySelectorAll(key));
     // eslint-disable-next-line new-cap
     instances.forEach((instance) => new component(instance, ...services));

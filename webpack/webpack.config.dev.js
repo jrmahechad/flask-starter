@@ -15,7 +15,7 @@ module.exports = merge(common, {
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
     new MiniCssExtractPlugin({
-      filename: 'main.min.temp.css',
+      filename: '[name].min.temp.css',
     }),
   ],
   module: {
@@ -29,7 +29,7 @@ module.exports = merge(common, {
         test: /\.s?css$/i,
         use: [
           { loader: MiniCssExtractPlugin.loader },
-          { loader: 'css-loader', options: { sourceMap: true }, },
+          { loader: 'css-loader', options: { sourceMap: true } },
           { loader: 'postcss-loader' },
           { loader: 'sass-loader' },
         ],
@@ -48,7 +48,7 @@ module.exports = merge(common, {
     port: 9000,
     proxy: {
       '/': {
-        target: 'http://web:8000',
+        target: 'http://gae:8000',
         changeOrigin: true,
       },
     },

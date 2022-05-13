@@ -3,11 +3,11 @@ const Path = require('path');
 
 module.exports = {
   entry: {
-    app: Path.resolve(__dirname, '../src/js/main.js'),
+    main: Path.resolve(__dirname, '../src/js/main.js'),
   },
   output: {
     path: Path.join(__dirname, '../appengine/static/'),
-    filename: 'main.min.temp.js',
+    filename: '[name].min.temp.js',
   },
   plugins: [
     new CleanWebpackPlugin({
