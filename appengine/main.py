@@ -4,7 +4,6 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 from flask import Flask, render_template
-from flask_assets import Environment, Bundle
 from flask import request, escape
 from custom_filters import sample
 
@@ -18,15 +17,6 @@ app.register_blueprint(sample.filter_bp)
 cred = credentials.ApplicationDefault()
 firebase_admin.initialize_app(cred)
 db = firestore.client()
-
-# Configuration for sass -> css minified
-assets = Environment(app)
-
-css_min = Bundle('main.min.temp.css', output='main.min.css')
-assets.register('scss_all', css_min)
-
-js_min = Bundle('main.min.temp.js', output='main.min.js')
-assets.register('js_min', js_min)
 
 
 def get_safe_param(request, param):

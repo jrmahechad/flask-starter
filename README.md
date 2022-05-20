@@ -11,11 +11,13 @@ Fork/download and modify as needed.
 When forking from this project update `docker-compose.yaml` file container names with something related to your project.
 Change `project_*` names as you see fit.
 
-| Folder          | Description                                       |
-| :-------------- | :------------------------------------------------ |
-| appengine       | The AppEngine project that displays a page.       |
-| firestore       | Provides local firestore emulation (not deployed) |
-| cloud-functions | Contains sample cloud functions                   |
+| Folder                       | Description                                       |
+| :--------------------------- | :------------------------------------------------ |
+| appengine                    | The AppEngine project that displays a page.       |
+| firestore                    | Provides local firestore emulation (not deployed) |
+| cloud-build                  | Provides yaml files for cloud build               |
+| cloud-functions              | Contains sample cloud functions                   |
+| cloud-functions/github_event | Contains sample cloud functions                   |
 
 ## Development
 

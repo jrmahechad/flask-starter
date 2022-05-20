@@ -1,0 +1,64 @@
+steps:
+  # - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  #   id: FIREBASE_CLIENT
+  #   entrypoint: 'bash'
+  #   args:
+  #     [
+  #       '-c',
+  #       'gcloud secrets versions access latest --secret=firebase-client > firebase-client.js',
+  #     ]
+
+  # - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  #   id: ENV_VARS
+  #   entrypoint: 'bash'
+  #   args:
+  #     [
+  #       '-c',
+  #       'gcloud secrets versions access latest --secret=makefile-env > Makefile-env',
+  #     ]
+
+  - name: node:16-slim
+    id: NPM_INSTALL
+    entrypoint: bash
+    args: ['-c', 'npm ci']
+
+  - name: node:16-slim
+    id: FE_BUILD
+    waitFor:
+      - NPM_INSTALL
+      # - FIREBASE_CLIENT
+      # - ENV_VARS
+    entrypoint: npm
+    args: ['run', 'build']
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    id: DEPLOY_GAE
+    waitFor:
+      - FE_BUILD
+    entrypoint: 'bash'
+    dir: '${_GAE}'
+    args:
+      [
+        '-c',
+        'gcloud app deploy --version=$(date +%F) --project=$PROJECT_ID --quiet',
+      ]
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    id: FIREBASE_DATABASE_UPDATE
+    waitFor:
+      - FE_BUILD
+    entrypoint: 'bash'
+    dir: 'cloud-functions/init-firebase'
+    args: ['-c', 'pip3 install -r requirements.txt && python3 main.py']
+# Dispatch
+# For more information on dispatch yaml go to: https://cloud.google.com/appengine/docs/standard/python/reference/dispatch-yaml
+# - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+#   id: DEPLOY_GAE_DISPATCH
+#   waitFor:
+#   - DEPLOY_GAE
+#   entrypoint: 'bash'
+#   dir: '${_GAE}'
+#   args: ['-c', 'gcloud app deploy dispatch.yaml']
+
+substitutions:
+  _GAE: appengine

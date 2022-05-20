@@ -1,0 +1,9 @@
+- prod server
+- download repo
+- checkout `main` branch
+- deploy init-firebase function
+- run init-firebase function
+- TBD if we need to deploy/run more functions
+- npm build
+- deploy into peak22 service
+- deploy dispatch yaml

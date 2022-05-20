@@ -9,7 +9,6 @@ const { merge } = require('webpack-merge');
 
 const common = require('./webpack.common.js');
 
-
 module.exports = merge(common, {
   bail: true,
   mode: 'production',
@@ -19,7 +18,7 @@ module.exports = merge(common, {
       'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].min.temp.css',
+      filename: '[name].min.css',
     }),
     new ESLintPlugin({
       context: Path.resolve(__dirname, '../src'),

@@ -1,4 +1,6 @@
-from .page import get_component, get_page
+from .page import get_page
+from components.sample import sample_component
+
 
 def save_sample_page(db):
     """
@@ -8,7 +10,6 @@ def save_sample_page(db):
     ----------
     db: firebase database
     """
-    sample_component = get_component('sample', 'default', data=dict(copy='sample text from firebase'))
 
     data = get_page('index', [sample_component, sample_component])
 

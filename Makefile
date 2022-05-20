@@ -30,6 +30,9 @@ deploy-cf-test:
 		--project=${staging} \
 		--trigger-http
 
+deploy-to-staging:
+	gcloud builds submit --config cloud-build/cloudbuild.dev.yaml --project=${staging}
+
 prod-deploy-app-engine:
 	gcloud app deploy appengine/app.yaml --project=${prod}
 
@@ -43,7 +46,7 @@ prod-deploy-cf-init:
 		--project=${prod} \
 		--trigger-http
 
-prod-deploy-cf-waze-api:
+prod-deploy-cf-sample-api:
 	gcloud functions deploy sample \
 		--entry-point=hook \
 		--runtime=python39 \

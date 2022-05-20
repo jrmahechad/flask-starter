@@ -7,7 +7,7 @@ module.exports = {
   },
   output: {
     path: Path.join(__dirname, '../appengine/static/'),
-    filename: '[name].min.temp.js',
+    filename: '[name].min.js',
   },
   plugins: [
     new CleanWebpackPlugin({

@@ -1,4 +1,7 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+const Path = require('path');
 const Webpack = require('webpack');
 const { merge } = require('webpack-merge');
 
@@ -15,7 +18,15 @@ module.exports = merge(common, {
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].min.temp.css',
+      filename: '[name].min.css',
+    }),
+    new ESLintPlugin({
+      context: Path.resolve(__dirname, '../src'),
+      extensions: 'js',
+    }),
+    new StylelintPlugin({
+      context: Path.resolve(__dirname, '../src'),
+      files: '**/*.scss',
     }),
   ],
   module: {
