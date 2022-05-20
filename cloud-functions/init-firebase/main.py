@@ -26,5 +26,6 @@ def hook(request):
 
     return '', 200
 
+
 if __name__ == "__main__":
-    save_index(db)
+    save_sample_page(db)

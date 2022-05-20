@@ -1,5 +1,5 @@
 from .page import get_page
-from components.sample import sample_component
+from .components.sample import sample_component
 
 
 def save_sample_page(db):

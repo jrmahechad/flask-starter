@@ -7,16 +7,12 @@
     <meta content="IE=Edge" http-equiv="X-UA-Compatible">
 
     <link href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700|Google+Sans:400,500|Product+Sans:400&amp;lang=en" rel="stylesheet">
-    {% assets "scss_all" %}
-      <link rel=stylesheet type=text/css href="{{ ASSET_URL }}">
-    {% endassets %}
+    <link rel=stylesheet type=text/css href="{{url_for('static', filename='main.min.css')}}">
   </head>
   <body class="body">
     <main class="container">
       {% block body %}{% endblock %}
     </main>
-    {% assets "js_min" %}
-      <script defer src="{{ASSET_URL}}"></script>
-    {% endassets %}
+    <script defer src="{{url_for('static', filename='main.min.js')}}"></script>
   </body>
 </html>
