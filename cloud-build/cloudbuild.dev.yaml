@@ -1,12 +1,13 @@
 steps:
-  # - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  #   id: FIREBASE_CLIENT
-  #   entrypoint: 'bash'
-  #   args:
-  #     [
-  #       '-c',
-  #       'gcloud secrets versions access latest --secret=firebase-client > firebase-client.js',
-  #     ]
+steps:
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    id: FIREBASE_CLIENT
+    entrypoint: 'bash'
+    args:
+      [
+        '-c',
+        'gcloud secrets versions access latest --secret=firebase-client > firebase-config.js',
+      ]
 
   # - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   #   id: ENV_VARS

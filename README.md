@@ -39,6 +39,19 @@ To setup the base images (once or when you change requirements):
 docker-compose build
 ```
 
+If you change front dependencies run
+
+```bash
+docker-compose run webpack npm i
+```
+
+or for a clean install
+
+```bash
+docker-compose run webpack npm ci
+```
+
+
 After that the code can be loaded at any time with:
 
 ```bash

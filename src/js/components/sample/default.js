@@ -1,3 +1,5 @@
+import { firebaseService } from '../../services/firebase';
+
 /**
  * @fileoverview SampleDefault class.
  */
@@ -7,6 +9,7 @@ class SampleDefault {
    */
   constructor() {
     console.log('SampleDefault!!!!');
+    firebaseService.addDocument();
   }
 }
 
