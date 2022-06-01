@@ -44,7 +44,20 @@ steps:
     args:
       [
         '-c',
-        'gcloud app deploy --version=$(date +%F) --project=$PROJECT_ID --quiet',
+        'gcloud app deploy --version=$(date +%F) --project=$PROJECT_ID --quiet --no-promote',
+      ]
+
+    # Deploy app engine site for QA to test before promote.
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    id: DEPLOY_GAE_QA
+    waitFor:
+      - FE_BUILD
+    entrypoint: 'bash'
+    dir: '${_GAE}'
+    args:
+      [
+        '-c',
+        'gcloud app deploy --version=qa --project=$PROJECT_ID --quiet --no-promote',
       ]
 
   # Starts database with content.
@@ -61,6 +74,7 @@ steps:
   #   id: DEPLOY_GAE_DISPATCH
   #   waitFor:
   #     - DEPLOY_GAE
+  #     - DEPLOY_GAE_QA
   #   entrypoint: 'bash'
   #   dir: '${_GAE}'
   #   args: ['-c', 'gcloud app deploy dispatch.yaml']
