@@ -33,6 +33,25 @@ deploy-cf-test:
 deploy-to-staging:
 	gcloud builds submit --config cloud-build/cloudbuild.dev.yaml --project=${staging}
 
+deploy-cf-github-staging:
+	gcloud secrets versions access latest --project=${staging} --secret=github-event > ./cloud-functions/github_event/env-vars.yaml
+	gcloud functions deploy github_event \
+			--project=${staging} \
+			--trigger-http \
+			--runtime=python37 \
+			--source=./cloud-functions/github_event \
+			--env-vars-file ./cloud-functions/github_event/env-vars.yaml
+
+deploy-cf-github-prod:
+	gcloud secrets versions access latest --project=${prod} --secret=github-event > ./cloud-functions/github_event/env-vars.yaml
+	gcloud functions deploy github_event \
+			--project=${prod} \
+			--trigger-http \
+			--runtime=python37 \
+			--source=./cloud-functions/github_event \
+			--env-vars-file ./cloud-functions/github_event/env-vars.yaml
+
+
 prod-deploy-app-engine:
 	gcloud app deploy appengine/app.yaml --project=${prod}
 
